@@ -1,26 +1,15 @@
-import "./App.css";
-import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Temp from "./pages/Temp";
 
 function App() {
-  const [username, setUsername] = useState(null);
-
-  let getData = () => {
-    fetch("api")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsername(data.username);
-      });
-  };
-  useEffect(() => {
-    getData();
-  });
-
   return (
-    <div className="App">
-      <header className="App-header">
-        {username ? `Hello ${username}` : "Hello World"}
-      </header>
-    </div>
+    <>
+      <Router>
+        <Route path="/" exact component={Home} />
+        <Route path="/template" exact component={Temp} />
+      </Router>
+    </>
   );
 }
 
