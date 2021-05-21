@@ -9,6 +9,28 @@ app.get("/", (req, res) => {
   res.send("Hello home page");
 });
 
+app.get("/form", (req, res) => {
+  let title = req.query.title;
+  let description = req.query.description;
+  res.send(title + "," + description);
+});
+
+app.get("/topic/:id", (req, res) => {
+  let topics = ["Javascript is...", "Nodejs is...", "Express is..."];
+  let output = `
+  <a href="/topic?id=0">JavaScript</a><br/>
+  <a href="/topic?id=1">Nodejs</a><br/>
+  <a href="/topic?id=2">Express</a><br/>
+  <h1>${topics[req.params.id]}</h1>
+  `;
+
+  res.send(output);
+});
+
+app.get("/topic/:id/:mode", (req, res) => {
+  res.send(req.params.id + "," + req.params.mode);
+});
+
 app.get("/dynamic", (req, res) => {
   let lis = "";
   for (let i = 0; i < 5; i++) {
