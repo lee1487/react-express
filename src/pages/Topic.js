@@ -16,7 +16,7 @@ const Topic = ({ location }) => {
     );
     return searchObj;
   }
-  let str = ``;
+
   let query = SetqueryString(location);
 
   return (

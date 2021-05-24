@@ -3,6 +3,8 @@
 # 1.step
 
 ```
+https://hello-bryan.tistory.com/122 참조
+
 npx create-react-app react-express
 # 설치 다되면
 
@@ -115,4 +117,43 @@ let getData = () => {
   };
   로 변경
   react-express 연동 끝
+```
+
+# 6.step
+
+```
+servers 폴더 아래 routes 폴더를 만들고 index.js 를 만든다.
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res)=>res.json({username:'bryan~~~'}));
+
+module.exports = router;
+
+그리고 server.js를 수정
+const express = require('express');
+const app = express();
+// const cors = require('cors');
+const bodyParser = require('body-parser');
+const port =process.env.PORT || 3001;
+const route = require('./routes/index');
+
+// app.use(cors());
+
+app.use(bodyParser.json());
+app.use('/api', route); // app.use('/api', (req, res)=> res.json({username:'bryan'}));
+
+app.listen(port, ()=>{
+    console.log(`express is running on ${port}`);
+})
+```
+
+## express 서버 자동 실챙
+
+```
+1. yarn add nodemon
+2. package.json 에서
+"start:server": "node ./servers/server.js",
+node를 nodemon으로 변경
+끝
 ```

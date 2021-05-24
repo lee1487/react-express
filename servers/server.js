@@ -4,6 +4,7 @@ const port = process.env.PORT || 3003;
 
 app.use(express.static("assets"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   res.send("Hello home page");
@@ -15,12 +16,19 @@ app.get("/form", (req, res) => {
   res.send(title + "," + description);
 });
 
+app.post("/form", (req, res) => {
+  console.log(req.body);
+  let title = req.body.title;
+  let description = req.body.description;
+  res.send(title + "," + description);
+});
+
 app.get("/topic/:id", (req, res) => {
   let topics = ["Javascript is...", "Nodejs is...", "Express is..."];
   let output = `
-  <a href="/topic?id=0">JavaScript</a><br/>
-  <a href="/topic?id=1">Nodejs</a><br/>
-  <a href="/topic?id=2">Express</a><br/>
+  <a href="/topic/0">JavaScript</a><br/>
+  <a href="/topic/1">Nodejs</a><br/>
+  <a href="/topic/2">Express</a><br/>
   <h1>${topics[req.params.id]}</h1>
   `;
 
