@@ -1,8 +1,9 @@
-import Layout2 from "./components/layout/Layout2";
+import Layout2 from './components/layout/Layout2';
+import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Layout2 />
     </div>
   );
